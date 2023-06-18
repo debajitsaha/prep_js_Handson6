@@ -1,0 +1,13 @@
+body{
+    background-image: linear-gradient( yellow,rgb(19, 248, 19));
+    color: rgb(70, 19, 209);
+    font-size: 15px;
+}
+p{
+    font-size: 22px;
+    color: rgb(240, 1, 240);
+}
+#qes{
+    color: rgb(230, 10, 10);
+    font-size: 20px;
+}

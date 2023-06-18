@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <center><h1>Array & Object</h1></center>
+    <pre id="qes"><h2>Q.</h2>"let studentRecords = [ {name: 'John', id: 123, marks : 98 },
+        {name: 'Baba', id: 101, marks : 23 },
+        {name: 'yaga', id: 200, marks : 45 },
+        {name: 'Wick', id: 115, marks : 75 } ] "</pre>
+        
+    <p>Q.1 "We are interested in retrieving only the students' names; all the names should be in caps.
+
+            ['JOHN', 'BABA', 'YAGA', 'WICK']"</p>
+    <pre>→ studentRecords.map(item)=>{
+    console.log(item.name.toUpperCase());
+    }
+    <h2>Explain:</h2>In this code, we use the map function to iterate over each element of the studentRecords array. For each student object, we access the name property and apply the toUpperCase() method to convert it to uppercase.
+
+    The map function creates a new array with the transformed names, and we store it in the studentNames variable. Finally, we log the studentNames array to the console.
+    
+    Running this code will output an array ['JOHN', 'BABA', 'YAGA', 'WICK'], which contains the names of the students in uppercase letters, as requested.
+    </pre>
+    <p>Q.2"Suppose we have the same dataset as above but this time we want to get the details of students who scored more than 50 marks.
+
+        [{name: 'John', id: 123, marks: 98 },{name: 'Wick', id: 115, marks: 75 }]" </p>
+    <pre>→
+
+var highScorers = studentRecords.filter(function(student) {
+  return student.marks > 50;
+});
+
+console.log(highScorers);
+<h2>Explain:</h2> we use the filter function to iterate over each element of the studentRecords array. For each student object, we check if the marks property is greater than 50. If it is, we include that student object in the resulting array.
+
+The filter function creates a new array highScorers containing the student objects that meet the specified condition. Finally, we log the highScorers array to the console.
+    </pre>
+<p>Q.3 Retrieve the details of students who scored more than 50 marks and have IDs greater than 120.</p>
+<pre>→ var filteredStudents = studentRecords.filter(function(student) {
+    return student.marks > 50 && student.id > 120;
+  });
+  
+  console.log(filteredStudents);
+<h2>Explain:</h2>  we use the filter function to iterate over each element of the studentRecords array. For each student object, we check two conditions using the && operator: if the marks property is greater than 50 and if the id property is greater than 120. Only if both conditions are true, the student object will be included in the resulting array.
+
+The filter function creates a new array filteredStudents containing the student objects that meet both specified conditions. Finally, we log the filteredStudents array to the console.</pre>
+<p>Q.4 Consider the same scenario we have discussed above, but this time we would like to know the sum total of the marks of the students.</p>
+<pre>→ var totalMarks = studentRecords.reduce(function(sum, student) {
+    return sum + student.marks;
+  }, 0);
+  
+  console.log(totalMarks);
+<h2>Explain:</h2> we use the reduce function to iterate over each element of the studentRecords array. The reduce function takes a callback function as its first argument, which is executed for each element in the array.
+
+Inside the callback function, we accumulate the sum of the marks by adding the marks property of each student object to the sum variable.
+
+The reduce function also takes a second argument, which is the initial value of the sum variable. In this case, we set it to 0 to start the summation.
+
+Finally, the reduce function returns the total sum of the marks. We log the totalMarks to the console.</pre>
+<p>Q.5 This time we want to get only the names of the students who scored more than 50 marks from the same dataset used above.</p>
+<pre>→ var highScorers = studentRecords
+    .filter(function(student) {
+      return student.marks > 50;
+    })
+    .map(function(student) {
+      return student.name;
+    });
+  
+  console.log(highScorers);
+<h2>Explain:</h2> we first use the filter function to iterate over each element of the studentRecords array. For each student object, we check if the marks property is greater than 50. If it is, we include that student object in the resulting array.
+
+Then, we chain the map function to the filtered array. The map function iterates over each element and extracts only the name property, returning a new array of student names.
+
+Finally, we log the highScorers array to the console, which contains the names of the students who scored more than 50 marks.</pre>
+<p>Q.6 This time we are required to print the sum of marks of the students with id > 120.</p>
+<pre>→ var sumOfMarks = studentRecords
+    .filter(function(student) {
+      return student.id > 120;
+    })
+    .reduce(function(sum, student) {
+      return sum + student.marks;
+    }, 0);
+  
+  console.log(sumOfMarks);
+<h2>Explain:</h2>we first use the filter function to iterate over each element of the studentRecords array. For each student object, we check if the id property is greater than 120. If it is, we include that student object in the resulting array.
+
+Then, we chain the reduce function to the filtered array. The reduce function takes a callback function as its first argument, which is executed for each element in the array. Inside the callback function, we accumulate the sum of the marks by adding the marks property of each student object to the sum variable.
+
+The reduce function also takes a second argument, which is the initial value of the sum variable. In this case, we set it to 0 to start the summation.
+
+Finally, the reduce function returns the total sum of the marks of the selected students. We log the sumOfMarks to the console.</pre>
+<p>Q.7 This time we are required to print the total marks of the students with marks greater than 50 after a grace of 15 marks has been added to those students who scored less than 50.</p>
+<pre>→ var totalMarks = studentRecords
+    .map(function(student) {
+      if (student.marks < 50) {
+        student.marks += 15; // Add 15 grace marks
+      }
+      return student.marks;
+    })
+    .filter(function(mark) {
+      return mark > 50;
+    })
+    .reduce(function(sum, mark) {
+      return sum + mark;
+    }, 0);
+  
+  console.log(totalMarks);
+<h2>Explain:</h2>we first use the map function to iterate over each element of the studentRecords array. For each student object, we check if the marks property is less than 50. If it is, we add 15 grace marks to that student's marks.
+
+Then, we chain the filter function to the map operation to filter out only the marks that are greater than 50.
+
+Finally, we use the reduce function to calculate the total sum of the filtered marks. The reduce function takes a callback function as its first argument, which is executed for each element in the array. Inside the callback function, we accumulate the sum of the marks by adding each mark to the sum variable.
+
+The reduce function also takes a second argument, which is the initial value of the sum variable. In this case, we set it to 0 to start the summation.
+
+Finally, the reduce function returns the total sum of the filtered marks. We log the totalMarks to the console.</pre>
+<p>Q.8 Create 6 objects , each object will have name, class, roll no as properties. Store these objects in an array of objects. </p>
+<pre>→ var studentArray = [
+    {
+      name: 'John',
+      class: '10th',
+      rollNo: 1
+    },
+    {
+      name: 'Jane',
+      class: '9th',
+      rollNo: 2
+    },
+    {
+      name: 'Mike',
+      class: '11th',
+      rollNo: 3
+    },
+    {
+      name: 'Sarah',
+      class: '12th',
+      rollNo: 4
+    },
+    {
+      name: 'Alex',
+      class: '10th',
+      rollNo: 5
+    },
+    {
+      name: 'Emily',
+      class: '9th',
+      rollNo: 6
+    }
+  ];
+  
+  console.log(studentArray);
+<h2>Explain:</h2>we define an array called studentArray that holds 6 objects. Each object represents a student and contains properties such as name, class, and rollNo.
+
+We initialize the array with the respective values for each student, as shown in the example.
+
+Finally, we log the studentArray to the console to display all the student objects.</pre>
+</body>
+</html>
